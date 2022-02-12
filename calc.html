@@ -1,0 +1,153 @@
+<html>
+    <head>
+        <title>Calculator</title>
+        <script>
+            let result="",n1,n2,res="";
+            function numPress(id){
+                
+                if(res !== ""){
+                    n1=0;
+                    n2=0;
+                    res="";
+                    result="";
+                }
+
+                n = id
+                if(n==='+'||n==='-'||n==='*'||n==='/'){
+                    n1=parseInt(result)
+                }
+                result = result + id
+                document.getElementById("resultBox").innerHTML = result
+
+            }
+
+            function clears(){
+                n1=0;
+                n2=0;
+                res="";
+                result="";
+                document.getElementById("resultBox").innerHTML = "";
+            }
+            function calculate(){
+                let index = 0;
+                for(let i = 0; i < result.length; i++){
+                    if(result[i] === '+' || result[i] === '-' || result[i] === '*' || result[i] === '/'){
+                        index = i;
+                        break;
+                    }
+                }
+
+
+                let sym = result[index]
+                n2 = result.substring(index+1,result.length)
+                n2 = parseInt(n2)
+                
+                if(sym === '+'){
+                    res = n1+n2
+                }
+                if(sym === '-'){
+                    res = n1-n2
+                }
+                if(sym === '*'){
+                    res = n1*n2
+                }
+                if(sym === '/'){
+                    res = n1/n2
+                }
+
+
+                result = result + "  =  " + res
+
+                document.getElementById("resultBox").innerHTML = result
+            }
+        </script>
+        <style>
+            #outerBox{
+                background-color: #b9b9b9;
+                border: 2px solid #4e4e4e;
+                border-radius: 10px;
+                padding: 10px;
+                width: 200px;
+            }
+            
+            #resultBox{
+                background-color: white;
+                border: 2px solid #343434;
+                border-radius: 8px;
+                padding: 10px;
+                height: 16px;
+                margin-bottom: 20px;
+            }
+            #keyPad{
+                display: flex;
+                justify-content: space-evenly;
+            }
+            .num{
+                padding: 8px;
+                background-color: aqua;
+                border: 1px solid black;
+                border-radius: 4px;
+                width: 10px;
+                margin: 2px;
+                cursor: pointer;
+            }
+            .numRow{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .sym{
+                padding: 8px;
+                background-color: rgb(0, 15, 150);
+                border: 1px solid black;
+                color: white;
+                border-radius: 4px;
+                width: 10px;
+                margin: 2px;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="outerBox">
+            <div id="resultBox"></div>
+            <div id="keyPad">
+                <div id="numKeys">
+                    <div class="numRow">
+                        <div class="num" onclick="numPress('1')" id="1">1</div>
+                        <div class="num" onclick="numPress('2')" id="2">2</div>
+                        <div class="num" onclick="numPress('3')" id="3">3</div>
+                    </div>
+                    <div class="numRow">
+                        <div class="num" onclick="numPress('4')" id="4">4</div>
+                        <div class="num" onclick="numPress('5')" id="5">5</div>
+                        <div class="num" onclick="numPress('6')" id="6">6</div>
+                    </div>
+                    <div class="numRow">
+                        <div class="num" onclick="numPress('7')" id="7">7</div>
+                        <div class="num" onclick="numPress('8')" id="8">8</div>
+                        <div class="num" onclick="numPress('9')" id="9">9</div>
+                    </div>
+                    <div class="numRow">
+                        <div class="num" onclick="numPress('0')" id="0">0</div>
+                    </div>
+                </div>
+                <div id="symbolKeys">
+                    <div class="numRow">
+                        <div class="sym" onclick="numPress('+')" id="+">+</div>
+                        <div class="sym" onclick="numPress('-')" id="-">-</div>
+                    </div>
+                    <div class="numRow">
+                        <div class="sym" onclick="numPress('*')" id="*">*</div>
+                        <div class="sym" onclick="numPress('/')" id="/">/</div>
+                    </div>
+                    <div class="numRow">
+                        <div class="sym" onclick="calculate()" id="=">=</div>
+                        <div class="sym" onclick="clears()" id="=">C</div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
